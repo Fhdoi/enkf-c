@@ -1,0 +1,30 @@
+LD_PATH =
+
+INC_NC =
+LIB_NC = -lnetcdf -lhdf5 -lhdf5_hl
+
+LIB_M = -lm
+
+# with gridutils (default) (comment out to change)
+#
+INC_GU = -I/home/sfr009/my_lib/include
+LIB_GU = /home/sfr009/my_lib/lib/libgu.so
+#
+# without gridutils (uncomment to change)
+#
+#INC_GU = -DNO_GRIDUTILS
+#LIB_GU =
+
+LIB_LAPACK = -llapack -lblas -lgfortran
+LD_PATH +=
+
+# which compiler/flags to use without MPI
+# choose gcc if you do not have clang
+#
+CC = gcc
+CFLAGS = -g -pedantic -Wall -std=c99 -D_GNU_SOURCE # -O2
+
+# which compiler/flags to use with MPI
+#
+CCMPI = OMPI_MPICC=$(CC) mpicc
+CFLAGSMPI = -g -pedantic -Wall -std=c99 -D_GNU_SOURCE -DMPI # -O2

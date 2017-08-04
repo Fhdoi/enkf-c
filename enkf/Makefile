@@ -19,7 +19,7 @@ UPDATE_MPISTATUS = MPI
 
 ### do not edit below ###
 
-include ./make.inc
+include ./make.inc.linux
 
 PREP_INCS = -I./prep
 CALC_INCS = -I./calc
