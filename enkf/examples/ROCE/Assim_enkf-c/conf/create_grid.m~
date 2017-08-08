@@ -1,0 +1,39 @@
+clear all
+
+kmt = ncread('kmt.nc','kmt');
+lon = ncread('grid.nc','ulon');
+lat = ncread('grid.nc','ulat');
+
+depth = ncread('
+
+[a,b] = size(lon);
+
+for i = 1:35
+    zt(i) = 1 + 2*i;
+end
+
+c = 35;
+depth_t = 10 + rand(a,b);
+
+depth_t(kmt == 0) = 0;
+num_levels = c*ones(a,b);
+
+num_levels(kmt == 0) = 0;
+
+delete('grid_spec2.nc');
+
+lon = lon + 180;
+nccreate('grid_spec2.nc','lon','Dimensions',{'i',a,'j',b})
+ncwrite('grid_spec2.nc','lon',lon) 
+
+nccreate('grid_spec2.nc','lat','Dimensions',{'i',a,'j',b})
+ncwrite('grid_spec2.nc','lat',lat) 
+
+nccreate('grid_spec2.nc','zt','Dimensions',{'k',c})
+ncwrite('grid_spec2.nc','zt',zt) 
+
+nccreate('grid_spec2.nc','depth_t','Dimensions',{'i',a,'j',b})
+ncwrite('grid_spec2.nc','depth_t',depth_t) 
+
+nccreate('grid_spec2.nc','num_levels','Dimensions',{'i',a,'j',b})
+ncwrite('grid_spec2.nc','num_levels',num_levels) 

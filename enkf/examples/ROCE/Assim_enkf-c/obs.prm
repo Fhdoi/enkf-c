@@ -1,0 +1,6 @@
+PRODUCT = ALL
+TYPE = SIC
+READER = xy_gridded
+FILE = /global/work/sfr009/OSISAF/this_day.nc
+PARAMETER VARNAME = aic
+ERROR_STD = 0.3

@@ -1,0 +1,6 @@
+NAME = SIC
+ISSURFACE = 1
+VAR = aic
+HFUNCTION = standard
+MINVALUE = 0
+MAXVALUE = 1.0

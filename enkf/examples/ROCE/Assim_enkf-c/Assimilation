@@ -1,0 +1,9 @@
+cd Prep_for_assim
+make
+./Prep_assim
+cd ..
+make enkf
+cd Consistency_check
+make
+./Check
+cd ..

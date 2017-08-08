@@ -1,0 +1,12 @@
+NAME = ice-grid
+VTYPE = z
+MAPTYPE = k
+DATA = conf/grid_spec.nc
+XDIMNAME = i
+YDIMNAME = j
+ZDIMNAME = k
+XVARNAME = lon
+YVARNAME = lat
+ZVARNAME = zt
+DEPTHVARNAME = depth_t
+NUMLEVELSVARNAME = num_levels
