@@ -1,9 +1,11 @@
-cd Prep_for_assim
-make
+cd samlet
+make Prep
 ./Prep_assim
 cd ..
 make enkf
-cd Consistency_check
-make
+cd samlet
+make Check
 ./Check
+make Aicen
+./Aicen_res
 cd ..
