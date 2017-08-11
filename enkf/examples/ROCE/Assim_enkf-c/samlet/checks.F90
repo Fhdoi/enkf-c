@@ -85,7 +85,7 @@ module checks
 
 	integer										:: i,j,k, update
 	real										:: h, Vo, dV, sum_vicen, sum_vicen_lt0
-	real										:: h_cat(6)
+	real										:: h_cat(6), sum_aicen
 
 	h_cat(1) = 0
 	h_cat(2) = 0.64
@@ -176,6 +176,17 @@ module checks
 					aicen(i,j,k) = 0
 				endif
 			enddo
+                        ! Check aicen sum again
+                        sum_aicen = 0
+                        do k = 1,5
+                                sum_aicen = sum_aicen + aicen(i,j,k)
+                        enddo
+                        if (sum_aicen > 0.99999) then
+                                do k = 1,5
+                                        aicen(i,j,k) = aicen(i,j,k)/(sum_aicen + 0.000001)
+                                enddo
+                        endif
+
 		enddo
 	enddo
 				
@@ -290,27 +301,27 @@ module checks
 
 	do i = 1,nx
 		do j= 1,ny
-			if (onesided == 1) then
-				sum_var = 0
-				do k = 1,5
-					sum_var = sum_var + var(i,j,k)
-				enddo
-				! Use the sum as the actual value, think I will do this for all variables
-				if (sum_var > 0) then
-					sum_var_lt0 = 0
-					do k = 1,5
-						sum_var_lt0 = sum_var_lt0 + var(i,j,k)
-					enddo
-				endif
+!			if (onesided == 1) then
+!				sum_var = 0
+!				do k = 1,5
+!					sum_var = sum_var + var(i,j,k)
+!				enddo
+!				! Use the sum as the actual value, think I will do this for all variables
+!				if (sum_var > 0) then
+!					sum_var_lt0 = 0
+!					do k = 1,5
+!						sum_var_lt0 = sum_var_lt0 + var(i,j,k)
+!					enddo
+!				endif
 
-				if (sum_var_lt0 > 0) then
-					do k = 1,5
-						var(i,j,k) = sum_var*var(i,j,k)/sum_var_lt0
-					enddo
-				else
-					var(i,j,:) = 0
-				endif
-			endif
+!				if (sum_var_lt0 > 0) then
+!					do k = 1,5
+!						var(i,j,k) = sum_var*var(i,j,k)/sum_var_lt0
+!					enddo
+!				else
+!					var(i,j,:) = 0
+!				endif
+!			endif
 			do k = 1,5
 				if (aicen(i,j,k) == 0 .and. ice0 /= 78) then
 					var(i,j,k) = ice0
