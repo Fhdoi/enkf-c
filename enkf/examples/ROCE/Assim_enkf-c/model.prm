@@ -2,6 +2,8 @@ NAME = CICE
 
 VAR = aic
 GRID = ice-grid
+VAR = thickness
+GRID = ice-grid
 VAR = accum_aice
 GRID = ice-grid
 VAR = accum_fhocn

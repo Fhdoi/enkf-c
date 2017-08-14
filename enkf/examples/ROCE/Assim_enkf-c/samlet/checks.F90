@@ -434,41 +434,41 @@ module checks
 		elseif (var_name == 'scale_factor') then
 			ice0 = 78
 		elseif (var_name == 'stress12_1') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stress12_2') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stress12_3') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stress12_4') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_1') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_2') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_3') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_4') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_1') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_2') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_3') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_4') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'strocnxT') then
 			bot = 78
 			top = 78

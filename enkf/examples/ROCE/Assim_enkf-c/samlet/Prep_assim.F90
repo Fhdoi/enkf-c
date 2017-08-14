@@ -22,19 +22,14 @@ program Prep_assim
 											qice002, qice003, qice004, qice005, qice006, qice007, qsno001, sice001, &
 											sice002, sice003, sice004, sice005, sice006, sice007, vicen, vlvl, vsnon
 
-	real, dimension(nx,ny,5)			::	Tsfcn_org, alvl_org, apnd_org, dhs_org, ffrac_org, hpnd_org, iage_org, &
-							 				ipnd_org, qice001_org, qice002_org, qice003_org, qice004_org, qice005_org, &
-											qice006_org, qice007_org, qsno001_org, sice001_org,sice002_org, sice003_org, &
-							 				sice004_org, sice005_org, sice006_org, sice007_org, vicen_org, vlvl_org, &
-											vsnon_org, aicen_org
-
+	real, dimension(nx,ny,5)			:: thickness
 	real, dimension(nx,ny)				:: aic
 	
 	character(len=90)				:: filein_ice, filein_ocn, dir
 	character(len=1) 				:: str
 	character(len=2) 				:: str2
 	character(len=3) 				:: str3
-	integer						:: member
+	integer						:: member, i,j,k
 
 	print*, "Prep"
 
@@ -122,7 +117,16 @@ program Prep_assim
 	call read_var_nc(filein_ocn, 'temp',  35, 3, temp)
 	call read_var_nc(filein_ocn, 'salt',  35, 3, salt)
 
-
+	
+	! Calculate thickness
+	do i=1,nx
+		do j=1,ny
+			do k=1,nz
+				thickness(i,j,k) = vicen(i,j,k)/aicen(i,j,k)
+			enddo
+		enddo
+	enddo
+	
 	! Create individual files
 	!call create_nc(FILE_NAME,VAR_NAME, zdim)
 	call create_nc(Ensemble_dir // 'mem' // str3 // '_accum_aice.nc', 'accum_aice',  1)
@@ -266,6 +270,11 @@ program Prep_assim
 	! Sum of aicen
 	call create_nc(Ensemble_dir // 'mem' // str3 // '_aic.nc', 'aic',  1)
 	call write_var_nc(Ensemble_dir // 'mem' // str3 // '_aic.nc', 'aic',  1, 2, aic)
+
+	
+	!Thickness
+	call create_nc(Ensemble_dir // 'mem' // str3 // '_thickness.nc', 'thickness',  5)
+	call write_var_nc(Ensemble_dir // 'mem' // str3 // '_thickness.nc', 'thickness',  1, 2, thickness)
 
 	enddo
 
