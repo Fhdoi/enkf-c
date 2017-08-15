@@ -1,6 +1,13 @@
 PRODUCT = ALL
 TYPE = SIC
 READER = xy_gridded
-FILE = /global/work/sfr009/OSISAF/this_day.nc
+FILE = /global/work/sfr009/Observations/OSISAF/this_day.nc
 PARAMETER VARNAME = aic
 ERROR_STD = 0.3
+
+PRODUCT = ALL
+TYPE = SIT
+READER = xy_gridded
+FILE = /global/work/sfr009/Observations/SMOS_enkf-c/this_day.nc
+PARAMETER VARNAME = thickness
+

@@ -1,4 +1,6 @@
 gridutils-c/
-enkf/example/1/*
+enkf/examples/1/*
 enkf/indent-2.2.8a-mod
 enkf/bin/*
+enkf/examples/CICE/Assim_enkf-c/Old/
+enkf/examples/ROCE/Assim_enkf-c/Old/

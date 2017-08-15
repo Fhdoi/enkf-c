@@ -85,7 +85,7 @@ module checks
 
 	integer										:: i,j,k, update
 	real										:: h, Vo, dV, sum_vicen, sum_vicen_lt0
-	real										:: h_cat(6), sum_aicen
+	real										:: h_cat(6)
 
 	h_cat(1) = 0
 	h_cat(2) = 0.64
@@ -176,13 +176,6 @@ module checks
 					aicen(i,j,k) = 0
 				endif
 			enddo
-			sum_aicen = 0
-			do k = 1,5
-				sum_aicen = sum_aicen + aicen(i,j,k)
-			enddo
-			if (sum_aicen > 0.99999) then
-				aicen(i,j,k) = aicen(i,j,k)/(sum_aicen + 0.00001)
-			endif
 		enddo
 	enddo
 				
@@ -297,27 +290,27 @@ module checks
 
 	do i = 1,nx
 		do j= 1,ny
-!			if (onesided == 1) then
-!				sum_var = 0
-!				do k = 1,5
-!					sum_var = sum_var + var(i,j,k)
-!				enddo
-!				! Use the sum as the actual value, think I will do this for all variables
-!				if (sum_var > 0) then
-!					sum_var_lt0 = 0
-!					do k = 1,5
-!						sum_var_lt0 = sum_var_lt0 + var(i,j,k)
-!					enddo
-!				endif
+			if (onesided == 1) then
+				sum_var = 0
+				do k = 1,5
+					sum_var = sum_var + var(i,j,k)
+				enddo
+				! Use the sum as the actual value, think I will do this for all variables
+				if (sum_var > 0) then
+					sum_var_lt0 = 0
+					do k = 1,5
+						sum_var_lt0 = sum_var_lt0 + var(i,j,k)
+					enddo
+				endif
 
-!				if (sum_var_lt0 > 0) then
-!					do k = 1,5
-!						var(i,j,k) = sum_var*var(i,j,k)/sum_var_lt0
-!					enddo
-!				else
-!					var(i,j,:) = 0
-!				endif
-!			endif
+				if (sum_var_lt0 > 0) then
+					do k = 1,5
+						var(i,j,k) = sum_var*var(i,j,k)/sum_var_lt0
+					enddo
+				else
+					var(i,j,:) = 0
+				endif
+			endif
 			do k = 1,5
 				if (aicen(i,j,k) == 0 .and. ice0 /= 78) then
 					var(i,j,k) = ice0
@@ -423,6 +416,9 @@ module checks
 		elseif (var_name == 'frzmlt') then
 			bot = -1000.0
 			ice0 = -1000.0
+		elseif (var_name == 'sst') then
+			top = 40			
+			bot = -2
 		elseif (var_name == 'fsnow') then
 			bot = -2.0
 			top = 10.0
@@ -430,41 +426,41 @@ module checks
 		elseif (var_name == 'scale_factor') then
 			ice0 = 78
 		elseif (var_name == 'stress12_1') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stress12_2') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stress12_3') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stress12_4') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_1') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_2') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_3') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressm_4') then
-			bot = 78
-			top = 78
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_1') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_2') then
 			bot = 78
 			top = 0
 		elseif (var_name == 'stressp_3') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'stressp_4') then
-			bot = 78
-			top = 0
+			bot = -50000
+			top = 50000
 		elseif (var_name == 'strocnxT') then
 			bot = 78
 			top = 78
@@ -631,7 +627,7 @@ module checks
 
 	do i = 1,nx
 		do j = 1,ny
-			if (vic_org(i,j,1) > 0 .and. vic_org(i,j,2) > 0) then
+			if (vic_org(i,j,1) > 0.0001 .and. vic_org(i,j,2) > 0.0001 ) then
 				dv1 = (vic(i,j,1) - vic_org(i,j,1))/vic_org(i,j,1)
 				dv2 = (vic(i,j,2) - vic_org(i,j,2))/vic_org(i,j,2)
 				stress(i,j) = stress(i,j)*(1 + dv1 + dv2)

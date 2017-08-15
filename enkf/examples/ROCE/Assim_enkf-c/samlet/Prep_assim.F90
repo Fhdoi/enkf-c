@@ -121,7 +121,7 @@ program Prep_assim
 	! Calculate thickness
 	do i=1,nx
 		do j=1,ny
-			do k=1,nz
+			do k=1,5
 				thickness(i,j,k) = vicen(i,j,k)/aicen(i,j,k)
 			enddo
 		enddo
