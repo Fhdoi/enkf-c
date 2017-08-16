@@ -22,7 +22,7 @@ program Prep_assim
 											qice002, qice003, qice004, qice005, qice006, qice007, qsno001, sice001, &
 											sice002, sice003, sice004, sice005, sice006, sice007, vicen, vlvl, vsnon
 
-	real, dimension(nx,ny,5)			:: thickness
+	real, dimension(nx,ny,1)			:: thickness
 	real, dimension(nx,ny)				:: aic
 	
 	character(len=90)				:: filein_ice, filein_ocn, dir
@@ -122,7 +122,7 @@ program Prep_assim
 	do i=1,nx
 		do j=1,ny
 			do k=1,5
-				thickness(i,j,k) = vicen(i,j,k)/aicen(i,j,k)
+				thickness(i,j) = thickness(i,j) + vicen(i,j,k)/aicen(i,j,k)
 			enddo
 		enddo
 	enddo
