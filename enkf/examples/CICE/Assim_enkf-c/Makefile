@@ -60,13 +60,13 @@ enkf-update-global: enkf_update X5.nc conf ensemble_6565
 	rm -f ensemble_6565/mem*_*-???.nc
 
 enkf_prep:
-	cp /home/sfr009/PHD/enkf-c/enkf/bin/enkf_prep .
+	cp /home/ntnu/sfr009/enkf-c/enkf/bin/enkf_prep .
 
 enkf_calc:
-	cp /home/sfr009/PHD/enkf-c/enkf/bin/enkf_calc .
+	cp /home/ntnu/sfr009/enkf-c/enkf/bin/enkf_calc .
 
 enkf_update:
-	cp /home/sfr009/PHD/enkf-c/enkf/bin/enkf_update .
+	cp /home/ntnu/sfr009/enkf-c/enkf/bin/enkf_update .
 
 clean:
 	@rm -f X5*.nc w*.nc enkf_diag*.nc badbatches.txt observations*.nc *.out ensemble_6565/*.analysis* ensemble_6565/*.increment* ensemble_6565/*-???.nc background_6565/*.analysis* background_6565/*.increment* ensemble_6565/ens_*-???.nc background_6565/bg_*-???.nc *.nc enkf_* pointlogs.prm

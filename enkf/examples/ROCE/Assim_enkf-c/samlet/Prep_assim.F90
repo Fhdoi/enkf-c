@@ -22,7 +22,7 @@ program Prep_assim
 											qice002, qice003, qice004, qice005, qice006, qice007, qsno001, sice001, &
 											sice002, sice003, sice004, sice005, sice006, sice007, vicen, vlvl, vsnon
 
-	real, dimension(nx,ny,1)			:: thickness
+	real, dimension(nx,ny)			:: thickness
 	real, dimension(nx,ny)				:: aic
 	
 	character(len=90)				:: filein_ice, filein_ocn, dir
@@ -273,7 +273,7 @@ program Prep_assim
 
 	
 	!Thickness
-	call create_nc(Ensemble_dir // 'mem' // str3 // '_thickness.nc', 'thickness',  5)
+	call create_nc(Ensemble_dir // 'mem' // str3 // '_thickness.nc', 'thickness',  1)
 	call write_var_nc(Ensemble_dir // 'mem' // str3 // '_thickness.nc', 'thickness',  1, 2, thickness)
 
 	enddo

@@ -1,9 +1,17 @@
-cd Prep_for_assim
-make
+python rename_iced.py 1
+python rename_iced.py 3
+cd Both
+make -f makefile.Prep
 ./Prep_assim
 cd ..
 make enkf
-cd Consistency_check
-make
+cd Both
+make -f makefile.Conc
 ./Check
 cd ..
+cd aicen_res
+make
+./Aice_res
+cd ..
+python rename_iced.py 2
+python rename_iced.py 4

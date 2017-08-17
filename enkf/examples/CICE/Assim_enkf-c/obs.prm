@@ -1,6 +1,11 @@
 PRODUCT = ALL
 TYPE = SIC
 READER = xy_gridded
-FILE = obs/OSISAF/2005/osisaf_20050402.nc
-PARAMETER VARNAME = aic
-ERROR_STD = 0.3
+FILE = obs/this_day.nc
+PARAMETER VARNAME = ice_conc
+
+PRODUCT = ALL
+TYPE = SIT
+READER = xy_gridded
+FILE = obs/SMOS/this_day.nc
+PARAMETER VARNAME = thickness

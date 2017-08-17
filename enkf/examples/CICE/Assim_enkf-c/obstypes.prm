@@ -4,3 +4,10 @@ VAR = aic
 HFUNCTION = standard
 MINVALUE = 0
 MAXVALUE = 1.0
+
+NAME = SIT
+ISSURFACE = 1
+VAR = thickness
+HFUNCTION = standard
+MINVALUE = 0
+MAXVALUE = 20
